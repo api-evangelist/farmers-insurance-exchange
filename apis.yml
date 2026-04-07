@@ -1,7 +1,10 @@
 aid: farmers-insurance-exchange
-url: https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/apis.yml
+url: 
+  https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/apis.yml
 modified: '2026-03-21'
 apis: []
 common:
   - type: Website
     url: https://www.farmers-insurance-exchange.com
+description: >-
+  Farmers Insurance uses attorenys that exhibit disregard of privcy.
