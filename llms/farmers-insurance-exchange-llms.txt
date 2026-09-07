@@ -1,0 +1,91 @@
+# Farmers Insurance Exchange
+
+> Farmers Insurance Exchange is a Fortune 500 inter-insurance exchange and the largest of the three
+> reciprocal exchanges that make up the Farmers Insurance Group of Companies, underwriting auto, home,
+> specialty property, life and commercial lines across the United States and managed by Farmers Group,
+> Inc. Farmers runs an API program — the portal at developer.farmers.com is titled "Farmers Insurance
+> APIs" — but it is not a public developer platform: the entire portal sits behind an Okta sign-in, and
+> no machine-readable API contract (OpenAPI, GraphQL SDL, AsyncAPI, gRPC or WSDL) is published to the
+> open web.
+
+## Important for agents
+
+- There is **no publicly callable Farmers Insurance API**. As of 2026-09-07 no OpenAPI, Swagger, GraphQL
+  SDL, AsyncAPI, `.proto` or WSDL document could be retrieved from any Farmers host.
+- `developer.farmers.com` answers HTTP 200 to every path with the same 785-byte Angular shell that loads
+  an Okta sign-in widget — including `/openapi.json`, `/swagger.json`, `/api-docs`, `/llms.txt` and a
+  control path that cannot exist. A 200 from that host is **not** evidence that a document exists. Do
+  not treat responses from it as content.
+- `www.farmers.com` serves no `/.well-known/` discovery documents: `security.txt`,
+  `openid-configuration`, `oauth-authorization-server`, `oauth-protected-resource`, `api-catalog`,
+  `ai-plugin.json`, `aauth-resource.json`, `agent-card.json` and `agent.json` all return 404, and so
+  does a negative control, so those 404s are trustworthy.
+- `www.farmers.com/robots.txt` disallows `/api/` for all user-agents. That is the only public
+  acknowledgement of an API path on the retail host, and it is a boundary to honor, not a lead.
+- There is no Farmers MCP server, no A2A agent card, no public status page, no changelog, no first-party
+  SDK in any package registry, and no published rate limits or API pricing.
+- Obtaining API access is a partner or agency process gated by SSO — `epartner.farmersinsurance.com`
+  303-redirects to SAML at `farmersinsurance.okta.com`. It is not self-serve and cannot be completed by
+  an agent.
+- `www.farmersinsurance.com` and the `farmersinsurance.com` apex are unreachable over HTTPS: they serve
+  an Akamai edge certificate (CN `a248.e.akamai.net`) with no SAN for either name, so the handshake
+  fails. Use `www.farmers.com`. Subdomains such as `epartner.` and `jobs.` under farmersinsurance.com
+  do serve valid certificates.
+
+## API access (gated)
+
+- [Farmers Insurance APIs — developer portal](https://developer.farmers.com/): Okta sign-in required.
+  Every path returns the same login shell; no reference, spec, quickstart or pricing is public.
+- [ePartner](https://epartner.farmersinsurance.com/): partner portal, 303 to SAML SSO at
+  farmersinsurance.okta.com.
+
+## Company
+
+- [Farmers Insurance](https://www.farmers.com/): consumer site, product catalog and quoting.
+- [About Us](https://www.farmers.com/about-us/): company overview.
+- [Our Companies](https://www.farmers.com/companies/): the Farmers group of underwriting companies,
+  including Farmers Insurance Exchange itself.
+- [Farmers Newsroom](https://newsroom.farmers.com/): press releases and company announcements.
+- [Careers](https://www.farmers.com/careers/)
+- [LinkedIn](https://www.linkedin.com/company/farmers-insurance)
+
+## Customer surfaces
+
+- [Contact us](https://www.farmers.com/contact-us/): support phone lines and channels.
+- [FAQ](https://www.farmers.com/faq/): account, billing, claims, auto, home and quote FAQs.
+- [Log in](https://www.farmers.com/css/login): customer self-service login.
+- [Privacy Center](https://www.farmers.com/privacy-center/): privacy notices for each Farmers company,
+  including the AI / automated decision-making notice.
+
+## Legal
+
+- [Terms of Use](https://www.farmers.com/terms-of-use/)
+- [Privacy Center](https://www.farmers.com/privacy-center/)
+- [Privacy Statement](https://www.farmers.com/privacy-statement/)
+
+## Catalog artifacts
+
+- [apis.yml](https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/apis.yml):
+  the APIs.json index for Farmers Insurance Exchange.
+- [Well-known probe](https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/well-known/farmers-insurance-exchange-well-known.yml):
+  recorded results of the `/.well-known/` discovery sweep across four hosts (0 hits).
+- [Domain security](https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/security/farmers-insurance-exchange-domain-security.yml):
+  probed TLS, HSTS, DNSSEC, CAA, SPF and DMARC posture, including the broken farmersinsurance.com
+  certificate.
+- [Packages](https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/packages/farmers-insurance-exchange-packages.yml):
+  registry sweep for first-party SDKs (0 found across 8 registries).
+- [Plans](https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/plans/farmers-insurance-exchange-plans-pricing.yml):
+  API pricing (none published).
+- [Rate limits](https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/rate-limits/farmers-insurance-exchange-rate-limits.yml):
+  published rate limits (none).
+
+## Notes
+
+Generated by the API Evangelist enrichment pipeline on 2026-09-07 from apis.yml and this repository's
+probed artifacts, because Farmers publishes no `/llms.txt` of its own (`www.farmers.com/llms.txt`
+returns 404; `developer.farmers.com/llms.txt` returns the catch-all login shell). Every Farmers-hosted
+link above was fetched at generation time and returned HTTP 200; `https://www.farmers.com/css/login` is
+a client-rendered login shell rather than a server-rendered page, and every other www.farmers.com URL
+listed also appears in Farmers' own `https://www.farmers.com/sitemap.xml`. The
+`raw.githubusercontent.com` catalog artifact links resolve once this enrichment pass is committed and
+pushed.

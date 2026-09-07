@@ -1,0 +1,86 @@
+generated: '2026-09-07'
+method: searched
+source: >-
+  npm (registry.npmjs.org/-/v1/search), PyPI (pypi.org/pypi/<name>/json), RubyGems, crates.io,
+  NuGet (azuresearch-usnc.nuget.org/query), Maven Central (search.maven.org), Packagist, the
+  GitHub organization API, and the Farmers developer portal at https://developer.farmers.com/
+package_count: 0
+official_package_count: 0
+packages: []
+note: >-
+  No first-party Farmers Insurance client library exists in any public package registry. Every
+  registry was queried for the obvious names and for free-text "farmers" / "farmers insurance"
+  and returned only unrelated third-party work — agriculture tooling, DeFi "farming" contracts,
+  and a stray 2016 marketing package. There is no Farmers Insurance GitHub organization either:
+  github.com/farmers belongs to the Farmers Programming Group at Pusan National University
+  (Busan, Korea), and a GitHub org search for "farmers insurance" returns only Indiana Farmers
+  Mutual Insurance, a different and unaffiliated carrier. This is consistent with the rest of
+  the estate — the APIs Farmers markets at developer.farmers.com sit behind an Okta sign-in, so
+  any SDK that exists is delivered inside a partner relationship rather than published. Recorded
+  as a checked zero, not an unchecked gap. Because no package exists, there is no version or
+  published date to record; the currency fields are omitted rather than nulled per-entry.
+registries_checked:
+- registry: npm
+  endpoint: https://registry.npmjs.org/-/v1/search?text=farmers%20insurance&size=20
+  status: 200
+  first_party_hits: 0
+- registry: npm
+  endpoint: https://registry.npmjs.org/-/v1/search?text=farmers&size=25
+  status: 200
+  first_party_hits: 0
+- registry: pypi
+  endpoint: https://pypi.org/pypi/farmers/json
+  status: 404
+  first_party_hits: 0
+- registry: pypi
+  endpoint: https://pypi.org/pypi/farmers-insurance/json
+  status: 404
+  first_party_hits: 0
+- registry: pypi
+  endpoint: https://pypi.org/pypi/farmers-api/json
+  status: 404
+  first_party_hits: 0
+- registry: pypi
+  endpoint: https://pypi.org/pypi/farmers-sdk/json
+  status: 404
+  first_party_hits: 0
+- registry: rubygems
+  endpoint: https://rubygems.org/api/v1/gems/farmers.json
+  status: 404
+  first_party_hits: 0
+- registry: rubygems
+  endpoint: https://rubygems.org/api/v1/gems/farmers-insurance.json
+  status: 404
+  first_party_hits: 0
+- registry: crates.io
+  endpoint: https://crates.io/api/v1/crates?q=farmers%20insurance
+  status: 200
+  first_party_hits: 0
+  note: total 0 results
+- registry: nuget
+  endpoint: https://azuresearch-usnc.nuget.org/query?q=farmers+insurance
+  status: 200
+  first_party_hits: 0
+  note: totalHits 0
+- registry: maven-central
+  endpoint: https://search.maven.org/solrsearch/select?q=farmers
+  status: 200
+  first_party_hits: 0
+  note: numFound 0
+- registry: packagist
+  endpoint: https://packagist.org/search.json?q=farmers%20insurance
+  status: 200
+  first_party_hits: 0
+  note: total 0
+- registry: github
+  endpoint: https://api.github.com/orgs/farmers
+  status: 200
+  first_party_hits: 0
+  note: >-
+    organization exists but is "Farmers Programming Group (Pusan National University)",
+    Busan, Korea — not Farmers Insurance
+- registry: github
+  endpoint: https://api.github.com/search/users?q=farmers+insurance+type:org
+  status: 200
+  first_party_hits: 0
+  note: 8 results, none affiliated with Farmers Insurance Exchange

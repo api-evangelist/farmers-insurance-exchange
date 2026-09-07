@@ -1,16 +1,61 @@
-generated: '2026-07-11'
+generated: '2026-09-07'
 method: probed
-source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+source: >-
+  live DNS/TLS/HTTP probes of every Farmers host this record knows — the website host from
+  apis.yml, the developer portal at developer.farmers.com, the newsroom, the ePartner SSO
+  host, and the legacy www.farmersinsurance.com host the previous revision of apis.yml
+  carried as Website.
+note: >-
+  www.farmersinsurance.com and the farmersinsurance.com apex both terminate TLS on an Akamai
+  edge certificate (CN a248.e.akamai.net) that carries no SAN for either name, so every HTTPS
+  client rejects them. That is why the Website pointer was moved to https://www.farmers.com/,
+  which serves a valid certificate. The farmersinsurance.com domain is not dead — the
+  epartner. and jobs. subdomains under it serve valid certificates — only its apex and www
+  hosts are misconfigured. No host in the estate returns a Strict-Transport-Security header
+  on an anonymous HEAD except newsroom.farmers.com; the Akamai-fronted hosts answer bot
+  mitigation instead of a header, so hsts is recorded null (not observed) rather than false.
 hosts:
+- host: www.farmers.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Nov 13 23:59:59 2026 GMT
+  hsts: null
+- host: developer.farmers.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec 10 23:59:59 2026 GMT
+  hsts: null
+  note: HEAD timed out behind Akamai Bot Manager; HSTS not observed
+- host: newsroom.farmers.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  1 14:45:03 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
+- host: epartner.farmersinsurance.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Mar 21 23:59:59 2027 GMT
+  hsts: null
+  note: HEAD timed out behind the edge; redirects 303 to farmersinsurance.okta.com SAML SSO
 - host: www.farmersinsurance.com
   https: true
-  tls_cert_error: '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch,
-    certificate is not valid for ''www.farmers'
+  tls_cert_error: >-
+    [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: Hostname mismatch, certificate
+    is not valid for 'www.farmersinsurance.com' (served cert CN=a248.e.akamai.net)
   hsts: null
 domains:
+- domain: farmers.com
+  dnssec: false
+  caa: []
+  spf: true
+  spf_record: v=spf1 include:%{ir}.%{v}.%{d}.spf.has.pphosted.com -all
+  dmarc: true
+  dmarc_policy: reject
 - domain: farmersinsurance.com
   dnssec: false
   caa: []
   spf: true
+  spf_record: v=spf1 include:%{ir}.%{v}.%{d}.spf.has.pphosted.com ~all
   dmarc: true
   dmarc_policy: reject

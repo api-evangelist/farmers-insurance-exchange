@@ -1,0 +1,24 @@
+generated: '2026-09-07'
+method: searched
+source: https://developer.farmers.com/
+limit_count: 0
+rate_limits: []
+headers: []
+note: >-
+  No rate limits are published. Farmers documents no public API reference, so no page states a
+  quota, window, burst allowance, or the response headers returned on exhaustion. The developer
+  portal at developer.farmers.com answers every path with an Okta login shell, which means any
+  documented limits are visible only to authenticated partners. No limits could be observed on
+  a live unauthenticated response either: there is no reachable unauthenticated Farmers API
+  endpoint, and www.farmers.com/robots.txt disallows /api/ for all user-agents, which we honor
+  rather than probe under. limit_count 0 is a checked zero.
+evidence:
+- url: https://developer.farmers.com/
+  status: 200
+  finding: login wall; API reference and any limits not reachable anonymously
+- url: https://www.farmers.com/robots.txt
+  status: 200
+  finding: 'Disallow: /api/ for User-agent *; the only public acknowledgement of an API path'
+- url: https://www.farmers.com/sitemap.xml
+  status: 200
+  finding: no developer or API reference URL published

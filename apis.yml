@@ -2,10 +2,16 @@ aid: farmers-insurance-exchange
 name: Farmers Insurance Exchange
 description: >-
   Farmers Insurance Exchange is a Fortune 500 inter-insurance exchange and the
-  largest member of the Farmers Insurance Group of Companies. This repository
-  captures any APIs, developer tools, and machine-readable API artifacts
-  associated with Farmers Insurance Exchange. No public APIs have been
-  documented at this time.
+  largest of the three reciprocal exchanges that make up the Farmers Insurance
+  Group of Companies, underwriting auto, home, specialty property, life and
+  commercial lines across the United States and managed by Farmers Group, Inc.
+  This repository captures any APIs, developer tools, and machine-readable API
+  artifacts associated with Farmers Insurance Exchange. Farmers operates a
+  developer portal at developer.farmers.com titled "Farmers Insurance APIs",
+  but the entire portal is an Okta sign-in wall: no OpenAPI, API reference,
+  quickstart or pricing page is reachable without partner credentials, and the
+  same wall stands in front of the ePartner portal. No public API contract has
+  been observed.
 type: Index
 deliveryModel:
   model: unknown
@@ -32,15 +38,20 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/farmers-insurance-exchange.png
 access: 3rd-Party
 created: '2026-03-21'
-modified: '2026-04-28'
+modified: '2026-09-07'
 position: Consuming
 tags:
   - Fortune 500
   - Insurance
+  - Property and Casualty
+  - Auto Insurance
+  - Home Insurance
+  - Financial Services
+  - United States
 url: >-
+  https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/apis.yml
 x-api-posture: no-product-api
 x-api-posture-basis: observed
-  https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/apis.yml
 specificationVersion: '0.23'
 apis: []
 common:
@@ -49,7 +60,59 @@ common:
   - type: LinkedIn
     url: https://www.linkedin.com/company/farmers-insurance
   - type: Website
-    url: https://www.farmersinsurance.com/
+    url: https://www.farmers.com/
+  - type: DeveloperPortal
+    url: https://developer.farmers.com/
+  - type: Login
+    url: https://www.farmers.com/css/login
+  - type: Support
+    url: https://www.farmers.com/contact-us/
+  - type: FAQ
+    url: https://www.farmers.com/faq/
+  - type: TermsOfService
+    url: https://www.farmers.com/terms-of-use/
+  - type: PrivacyPolicy
+    url: https://www.farmers.com/privacy-center/
+  - type: Newsroom
+    url: https://newsroom.farmers.com/
+  - type: Packages
+    url: packages/farmers-insurance-exchange-packages.yml
+  - type: Plans
+    url: plans/farmers-insurance-exchange-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/farmers-insurance-exchange-rate-limits.yml
+  - type: LLMsTxt
+    url: llms/farmers-insurance-exchange-llms.txt
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-09-07'
+  status: minimal
+  artifacts_added: 5
+  pass: local-v3
+x-coverage:
+  state: gated
+  reason: partner-login
+  detail: >-
+    Farmers runs a developer portal at developer.farmers.com whose page title is "Farmers
+    Insurance APIs", but the whole portal is an Angular shell that loads an Okta sign-in
+    widget and returns that same 785-byte login page for every path — /openapi.json,
+    /swagger.json, /api-docs, /llms.txt and a control path that cannot exist all answer 200
+    with it — while the ePartner portal 303-redirects to SAML SSO at farmersinsurance.okta.com
+    and www.farmers.com/robots.txt disallows /api/, so no contract, reference or discovery
+    document is reachable without partner credentials.
+  evidence:
+    - url: https://developer.farmers.com/
+      status: 200
+    - url: https://developer.farmers.com/openapi.json
+      status: 200
+    - url: https://developer.farmers.com/.well-known/farmers-insurance-exchange-negative-control-7f3ab91c.json
+      status: 200
+    - url: https://epartner.farmersinsurance.com/
+      status: 303
+    - url: https://www.farmers.com/.well-known/api-catalog
+      status: 404
+    - url: https://www.farmers.com/robots.txt
+      status: 200
+  checked: '2026-09-07'

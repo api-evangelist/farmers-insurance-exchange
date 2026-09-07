@@ -1,0 +1,29 @@
+generated: '2026-09-07'
+method: searched
+source: https://developer.farmers.com/
+plan_count: 0
+plans: []
+note: >-
+  Farmers Insurance Exchange publishes no API plans, tiers, quotas or developer pricing of any
+  kind. The developer portal at developer.farmers.com — whose page title is "Farmers Insurance
+  APIs" — is an Angular single-page app that loads an Okta sign-in widget and serves that same
+  login shell for every path, so there is no public pricing page, no self-serve tier, and no
+  "request access" form to read terms from. The partner surface under farmersinsurance.com is
+  gated the same way: epartner.farmersinsurance.com 303-redirects to a SAML SSO endpoint at
+  farmersinsurance.okta.com. Farmers' published pricing is insurance premium, not API pricing;
+  the retail site sells policies and quotes, and www.farmers.com/robots.txt disallows /api/ for
+  all crawlers. Any commercial terms for API access are negotiated inside a partner or agency
+  relationship and are not published. plan_count 0 is a searched finding, not an omission.
+evidence:
+- url: https://developer.farmers.com/
+  status: 200
+  finding: >-
+    Okta sign-in widget SPA titled "Custom Login Sample"; no plan, tier or pricing page
+    reachable without credentials
+- url: https://epartner.farmersinsurance.com/
+  status: 303
+  finding: redirects to farmersinsurance.okta.com SAML SSO; partner terms not public
+- url: https://www.farmers.com/sitemap.xml
+  status: 200
+  finding: >-
+    corporate sitemap contains no developer, API or API-pricing URL of any kind

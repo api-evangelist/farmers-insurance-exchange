@@ -1,0 +1,177 @@
+generated: '2026-09-07'
+method: probed
+source: >-
+  live HTTP probes of every Farmers host this record knows — the corporate site
+  www.farmers.com, the developer portal developer.farmers.com, the newsroom
+  newsroom.farmers.com, and the agent-locator host agents.farmers.com. Probed with a
+  browser User-Agent; the Akamai-fronted hosts rate-limit a scripted client aggressively,
+  so probes were paced and the ambiguous ones re-confirmed through a second fetcher.
+note: >-
+  Nothing was found. www.farmers.com and newsroom.farmers.com return clean, correct 404s for
+  every named path, and their negative controls also 404, so their answers are trustworthy.
+  developer.farmers.com is a LOGIN-WALLED CATCH-ALL: it is an Angular single-page app that
+  loads the Okta sign-in widget, and it answers HTTP 200 with the byte-identical 785-byte
+  "Custom Login Sample" shell for every path requested — including /openapi.json,
+  /swagger.json, /api-docs, /llms.txt and a control path that cannot exist. Its 200s are
+  therefore NOT documents, none were saved, and no WellKnown or SecurityTxt pointer is
+  emitted. agents.farmers.com is not a Farmers-operated host at all: it 302s its
+  /.well-known/ requests to an S3 bucket belonging to SOCi (llp-assets.meetsoci.com), the
+  local-marketing vendor that runs the agent-locator, and that bucket answers 403
+  AccessDenied. www.farmersinsurance.com could not be probed over HTTPS at all — it serves an
+  Akamai edge certificate with no SAN for the name, so the TLS handshake fails before any
+  request; that is recorded in security/farmers-insurance-exchange-domain-security.yml.
+hit_count: 0
+hosts:
+- host: https://www.farmers.com
+  path_echo_control: passed
+  soft_404_control:
+    path: /.well-known/farmers-insurance-exchange-negative-control-7f3ab91c.json
+    status: 404
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/openid-configuration
+    status: 404
+    file: null
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+    file: null
+  - path: /.well-known/oauth-protected-resource
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog.json
+    status: 404
+    file: null
+  - path: /.well-known/ai-plugin.json
+    status: 404
+    file: null
+  - path: /.well-known/ucp.json
+    status: 404
+    file: null
+  - path: /.well-known/acp.json
+    status: 404
+    file: null
+  - path: /.well-known/aauth-resource.json
+    status: 404
+    file: null
+  - path: /.well-known/apis.json
+    status: 404
+    file: null
+  - path: /apis.json
+    status: 404
+    file: null
+  - path: /apis.yml
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+  - path: /.well-known/agent.json
+    status: 404
+    file: null
+  - path: /llms.txt
+    status: 404
+    file: null
+  - path: /robots.txt
+    status: 200
+    file: null
+    note: >-
+      served, 201 bytes; disallows /api/ and /css-api-policy/ for all user-agents and names
+      https://www.farmers.com/sitemap.xml. Not a discovery document, recorded for context —
+      the Disallow on /api/ is the only public acknowledgement of an API path on this host,
+      and we honor it rather than probing under it.
+- host: https://developer.farmers.com
+  path_echo_control: n/a
+  soft_404_control:
+    path: /.well-known/farmers-insurance-exchange-negative-control-7f3ab91c.json
+    status: 200
+    bytes: 785
+    result: failed
+    finding: >-
+      returned the same "Custom Login Sample" Angular/Okta shell as every other path, so no
+      200 on this host can be treated as a document
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    file: null
+    note: HTML app shell (785 bytes), not a security.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: null
+    note: HTML app shell, not OIDC discovery
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: null
+    note: HTML app shell, not RFC 8414 metadata
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: null
+    note: HTML app shell, not RFC 9728 metadata
+  - path: /.well-known/api-catalog
+    status: 200
+    file: null
+    note: HTML app shell, not an RFC 9727 catalog
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    file: null
+    note: HTML app shell
+  - path: /.well-known/aauth-resource.json
+    status: 200
+    file: null
+    note: HTML app shell; no issuer or jwks_uri
+  - path: /.well-known/agent-card.json
+    status: 200
+    file: null
+    note: HTML app shell, not an A2A agent card
+  - path: /.well-known/agent.json
+    status: 200
+    file: null
+    note: HTML app shell, not an A2A agent card
+  - path: /apis.json
+    status: 200
+    file: null
+    note: HTML app shell; no apis[] or specificationVersion
+  - path: /llms.txt
+    status: 200
+    file: null
+    note: HTML app shell (785 bytes), not an llms.txt
+  - path: /openapi.json
+    status: 200
+    file: null
+    note: HTML app shell; no openapi/swagger key, no paths
+  - path: /swagger.json
+    status: 200
+    file: null
+    note: HTML app shell
+  - path: /api-docs
+    status: 200
+    file: null
+    note: HTML app shell
+- host: https://newsroom.farmers.com
+  path_echo_control: passed
+  soft_404_control:
+    path: /.well-known/newsroom-negative-control-7f3ab91c.json
+    status: 404
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+    file: null
+  - path: /.well-known/api-catalog
+    status: 404
+    file: null
+  - path: /.well-known/agent-card.json
+    status: 404
+    file: null
+- host: https://agents.farmers.com
+  path_echo_control: n/a
+  documents:
+  - path: /.well-known/security.txt
+    status: 302
+    file: null
+    note: >-
+      302 to https://llp-assets.meetsoci.com/live/assets/farmerssites/.well-known/security.txt
+      (SOCi vendor S3 bucket), which returns 403 AccessDenied. Not a Farmers-served document.
