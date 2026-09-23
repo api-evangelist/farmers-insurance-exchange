@@ -1,7 +1,9 @@
 ---
 title: Farmers Insurance hit by data breach, 1.1 million customers ...
 url: https://www.linkedin.com/posts/practical-cybersecurity_farmers-insurance-data-breach-impacts-11m-activity-7369048921878294528-Zdfg
-date: '2026-05-25'
+published: ''
+date_basis: harvested
+harvested: '2026-05-25'
 query: '"Farmers Insurance Exchange" press release artificial intelligence'
 position: 5
 source: serpapi-google

@@ -1,7 +1,9 @@
 ---
 title: News Releases - Farmers Newsroom
 url: https://newsroom.farmers.com/2019-05-01-Farmers-Insurance-R-and-Talespin-Announce-Collaboration-on-Leadership-and-Communication-Skills-Training-with-AI-Powered-Virtual-Human-Technology
-date: '2026-05-25'
+published: '2019-05-01'
+date_basis: url-derived
+harvested: '2026-05-25'
 query: '"Farmers Insurance Exchange" press release artificial intelligence'
 position: 2
 source: serpapi-google
