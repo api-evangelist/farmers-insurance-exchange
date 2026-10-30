@@ -1,4 +1,4 @@
-# Farmers Insurance Exchange (farmers-insurance-exchange)
+# Farmers Insurance Exchange
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,35 +64,94 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Farmers Insurance Exchange is a Fortune 500 inter-insurance exchange and the largest member of the Farmers Insurance Group of Companies. This repository captures any APIs, developer tools, and machine-readable API artifacts associated with Farmers Insurance Exchange.
+Farmers Insurance Exchange is a Fortune 500 inter-insurance exchange and the largest of the three reciprocal exchanges that make up the Farmers Insurance Group of Companies, underwriting auto, home, specialty property, life and commercial lines across the United States and managed by Farmers Group, Inc. This repository captures any APIs, developer tools, and machine-readable API artifacts associated with Farmers Insurance Exchange. Farmers operates a developer portal at developer.farmers.com titled "Farmers Insurance APIs", but the entire portal is an Okta sign-in wall: no OpenAPI, API reference, quickstart or pricing page is reachable without partner credentials, and the same wall stands in front of the ePartner portal. No public API contract has been observed.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/farmers-insurance-exchange/refs/heads/main/apis.yml)
+**Areas:** Fortune 500 · Insurance · Property and Casualty · Auto Insurance · Home Insurance · Financial Services · United States
 
-## Scope
+## Farmers Insurance Exchange on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Farmers Insurance Exchange is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/farmers-insurance-exchange/](https://apis.io/providers/farmers-insurance-exchange/)** — or go straight to one of the APIs or properties below.
 
-## Tags:
+### Published properties
 
-- Fortune 500, Insurance
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## Timestamps
+#### Security (1)
 
-- **Created:** 2026-03-21
-- **Modified:** 2026-04-28
+Authentication, trust centre, and vulnerability disclosure.
 
-## APIs
+- [Farmers Insurance Exchange Domain Security](https://apis.io/security/farmers-insurance-exchange/farmers-insurance-exchange-domain-security/)
 
-No public APIs have been documented yet. Contributions welcome.
+#### Plans and pricing (1)
 
-## Common Properties
+Published plans, tiers and prices.
 
-- [Website](https://www.farmersinsurance.com/)
+- [Farmers Insurance Exchange Plans Pricing](https://apis.io/plans/farmers-insurance-exchange/farmers-insurance-exchange-plans-pricing/)
 
-## Maintainers
+#### Rate limits (1)
 
-**FN:** Kin Lane
+Published request limits.
 
-**Email:** kin@apievangelist.com
+- [Farmers Insurance Exchange Rate Limits](https://apis.io/rate-limits/farmers-insurance-exchange/farmers-insurance-exchange-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.farmers.com/)
+- [Support](https://www.farmers.com/contact-us/)
+- [Terms of service](https://www.farmers.com/terms-of-use/)
+- [Privacy policy](https://www.farmers.com/privacy-center/)
+
+## API Evangelist rating
+
+**Kin Score 11.5** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 56.3 |
+| Contract quality | 0.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 4.8 |
+| Access clarity | 27.6 |
+
+**Agent readiness 2.5** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 12.3** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/farmers-insurance-exchange/](https://apis.io/providers/farmers-insurance-exchange/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Farmers Insurance Exchange: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/farmers-insurance-exchange/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
